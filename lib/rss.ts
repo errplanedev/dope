@@ -18,7 +18,7 @@ export const feeds = [
   },
 ];
 
-export async function getFeed(slug) {
+export async function getFeed(slug: any) {
   const feedConfig = feeds.find(feed => feed.slug === slug);
   if (!feedConfig) {
     throw new Error(`No feed found for slug: ${slug}`);

@@ -1,8 +1,7 @@
 import { feeds, getFeed } from "@/lib/rss";
 import { format } from "date-fns";
-import Link from "next/link";
 
-export default async function Page({ params }) {
+export default async function Page({ params }: any) {
   const { slug } = params;
   const feed = await getFeed(slug);
 
@@ -11,11 +10,12 @@ export default async function Page({ params }) {
       <h1>{slug}</h1>
       {feed.items.map((item, index) => (
         <div key={index} className="border border-border p-4 rounded-md hover:border-ring">
-          <Link href={item.link} target="__blank">
+          <a href={item.link} target="__blank">
             <h3>{item.title}</h3>
+            {/* @ts-ignore */}
             <p>{format(new Date(item.pubDate), "MMMM dd, yyyy")}</p>
             <p>{item.contentSnippet}</p>
-          </Link>
+          </a>
         </div>
       ))}
     </div>
